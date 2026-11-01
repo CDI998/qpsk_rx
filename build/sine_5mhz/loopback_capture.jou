@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sat Oct 31 21:46:21 2026
+# Process ID: 20224
+# Current directory: D:/Users/CDI/Desktop/V2
+# Command line: vivado.exe -mode batch -source C:/Users/CDI/.codex/visualizations/2026/10/30/01a18cdc-ad70-7a02-8ee0-943088c762c1/capture_v2_loopback.tcl -log build/sine_5mhz/loopback_capture.log -journal build/sine_5mhz/loopback_capture.jou
+# Log file: D:/Users/CDI/Desktop/V2/build/sine_5mhz/loopback_capture.log
+# Journal file: D:/Users/CDI/Desktop/V2\build/sine_5mhz/loopback_capture.jou
+#-----------------------------------------------------------
+source C:/Users/CDI/.codex/visualizations/2026/10/30/01a18cdc-ad70-7a02-8ee0-943088c762c1/capture_v2_loopback.tcl

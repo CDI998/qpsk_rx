@@ -1,0 +1,7 @@
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+SINE_ADC_TEST_PASS: 5 MHz sine, 4096 physical DAC words, ADC order, 12-bit native FIFOs and backpressure
+FULL_AFE_TEST_PASS: full inhibits ADC writes; reset blocks TX/RX; FIFO samples match DAC pins
+$finish called at time : 12623200 ns : File "D:/Users/CDI/Desktop/V2/build/rx_spi_gain_check/isolated/tb_afe_datapath.sv" Line 168

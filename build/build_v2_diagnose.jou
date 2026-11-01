@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Fri Oct 30 22:44:54 2026
+# Process ID: 17340
+# Current directory: D:/Users/CDI/Desktop/V2
+# Command line: vivado.exe -mode batch -source scripts/build_v2_diagnose.tcl -log build/build_v2_diagnose.log -journal build/build_v2_diagnose.jou
+# Log file: D:/Users/CDI/Desktop/V2/build/build_v2_diagnose.log
+# Journal file: D:/Users/CDI/Desktop/V2\build/build_v2_diagnose.jou
+#-----------------------------------------------------------
+source scripts/build_v2_diagnose.tcl

@@ -1,0 +1,51 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sat Oct 31 20:26:00 2026
+# Process ID: 20224
+# Current directory: D:/Users/CDI/Desktop/V2
+# Command line: vivado.exe -mode batch -source C:/Users/CDI/.codex/visualizations/2026/10/30/01a18cdc-ad70-7a02-8ee0-943088c762c1/program_v2_5mhz.tcl -log build/sine_5mhz/program_capture.log -journal build/sine_5mhz/program_capture.jou
+# Log file: D:/Users/CDI/Desktop/V2/build/sine_5mhz/program_capture.log
+# Journal file: D:/Users/CDI/Desktop/V2\build/sine_5mhz/program_capture.jou
+#-----------------------------------------------------------
+source C:/Users/CDI/.codex/visualizations/2026/10/30/01a18cdc-ad70-7a02-8ee0-943088c762c1/program_v2_5mhz.tcl
+# set out "D:/Users/CDI/Desktop/V2/build/sine_5mhz/isolated"
+# open_hw_manager
+# connect_hw_server -url localhost:3121
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+# set targets [get_hw_targets]
+# if {[llength $targets] != 1} {error "Expected exactly one JTAG target"}
+# current_hw_target [lindex $targets 0]
+# open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210512180081
+# set device [get_hw_devices xc7z010_1]
+# if {[llength $device] != 1} {error "Expected xc7z010"}
+# current_hw_device $device
+# set_property PROGRAM.FILE [file join $out top.bit] $device
+# set_property PROBES.FILE [file join $out top.ltx] $device
+# program_hw_devices $device
+INFO: [Labtools 27-3164] End of startup status: HIGH
+# refresh_hw_device $device
+INFO: [Labtools 27-2302] Device xc7z010 (JTAG device index = 1) is programmed with a design that has 1 ILA core(s).
+# set ila [get_hw_ilas -of_objects $device]
+# if {[llength $ila] != 1} {error "Expected one production ILA"}
+# after 1000
+# run_hw_ila -trigger_now $ila
+INFO: [Labtools 27-1964] The ILA core 'hw_ila_1' trigger was armed at 2026-Oct-31 20:26:12
+# wait_on_hw_ila -timeout 1 $ila
+INFO: [Labtools 27-1966] The ILA core 'hw_ila_1' triggered at 2026-Oct-31 20:26:12
+# write_hw_ila_data -csv_file -force [file join $out dac_adc_5mhz.csv] [upload_hw_ila_data $ila]
+# puts "V2_5MHZ_PROGRAM_AND_CAPTURE_PASS"
+V2_5MHZ_PROGRAM_AND_CAPTURE_PASS
+# close_hw_manager
+****** Webtalk v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source D:/Users/CDI/Desktop/V2/.Xil/Vivado-20224-DESKTOP-19V7RDI/webtalk/labtool_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Sat Oct 31 20:26:14 2026...
+INFO: [Common 17-206] Exiting Vivado at Sat Oct 31 20:26:14 2026...

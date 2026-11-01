@@ -1,0 +1,51 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sat Oct 31 20:25:08 2026
+# Process ID: 21168
+# Current directory: D:/Users/CDI/Desktop/V2
+# Command line: vivado.exe -mode batch -source D:/Users/CDI/Desktop/V1/scripts/capture_v2_conf_done.tcl -log build/v2_diagnose/reset_clock_recheck.log -journal build/v2_diagnose/reset_clock_recheck.jou
+# Log file: D:/Users/CDI/Desktop/V2/build/v2_diagnose/reset_clock_recheck.log
+# Journal file: D:/Users/CDI/Desktop/V2\build/v2_diagnose/reset_clock_recheck.jou
+#-----------------------------------------------------------
+source D:/Users/CDI/Desktop/V1/scripts/capture_v2_conf_done.tcl
+# set root "D:/Users/CDI/Desktop/V2"
+# set out [file join $root build v2_diagnose isolated]
+# open_hw_manager
+# connect_hw_server -url localhost:3121
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+# set target [lindex [get_hw_targets] 0]
+# if {$target eq ""} {error "No JTAG target"}
+# current_hw_target $target
+# open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210512180081
+# set device [get_hw_devices xc7z010_1]
+# current_hw_device $device
+# set_property PROGRAM.FILE [file join $out top_diagnose.bit] $device
+# set_property PROBES.FILE [file join $out top_diagnose.ltx] $device
+# program_hw_devices $device
+INFO: [Labtools 27-3164] End of startup status: HIGH
+# refresh_hw_device $device
+INFO: [Labtools 27-2302] Device xc7z010 (JTAG device index = 1) is programmed with a design that has 1 ILA core(s).
+# set ila [get_hw_ilas -of_objects $device]
+# if {[llength $ila] != 1} {error "Expected one diagnostic ILA"}
+# after 1000
+# run_hw_ila -trigger_now $ila
+INFO: [Labtools 27-1964] The ILA core 'hw_ila_1' trigger was armed at 2026-Oct-31 20:25:21
+# wait_on_hw_ila -timeout 1 $ila
+INFO: [Labtools 27-1966] The ILA core 'hw_ila_1' triggered at 2026-Oct-31 20:25:21
+# write_hw_ila_data -csv_file -force [file join $out conf_done.csv] [upload_hw_ila_data $ila]
+# puts "CONF_DONE_CAPTURE_COMPLETE=[file join $out conf_done.csv]"
+CONF_DONE_CAPTURE_COMPLETE=D:/Users/CDI/Desktop/V2/build/v2_diagnose/isolated/conf_done.csv
+# close_hw_manager
+****** Webtalk v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source D:/Users/CDI/Desktop/V2/.Xil/Vivado-21168-DESKTOP-19V7RDI/webtalk/labtool_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Sat Oct 31 20:25:22 2026...
+INFO: [Common 17-206] Exiting Vivado at Sat Oct 31 20:25:23 2026...

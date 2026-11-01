@@ -1,0 +1,4 @@
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+CTRL_TEST_PASS: six configurations/readbacks, dynamic PGA, failure blocks startup
+$finish called at time : 23242730 ns : File "D:/Users/CDI/Desktop/V2/qpsk9866.srcs/sim_1/new/tb_ad986x_ctrl_init.sv" Line 73

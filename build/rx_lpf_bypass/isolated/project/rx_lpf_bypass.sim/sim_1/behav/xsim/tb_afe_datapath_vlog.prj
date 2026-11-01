@@ -1,0 +1,20 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../../../../../qpsk9866.srcs/sources_1/ip/rx_fifo/sim/rx_fifo.v" \
+"../../../../../../../../qpsk9866.srcs/sources_1/ip/tx_fifo/sim/tx_fifo.v" \
+"../../../../../ad986x_ctrl.v" \
+"../../../../../../../../qpsk9866.srcs/sources_1/new/ad986x_rx.v" \
+"../../../../../../../../qpsk9866.srcs/sources_1/new/ad986x_tx.v" \
+"../../../../../../../../qpsk9866.srcs/sources_1/new/afe.v" \
+"../../../../../../../../qpsk9866.srcs/sources_1/new/sine_source.v" \
+"../../../../../../../../qpsk9866.srcs/sources_1/new/spi_master.v" \
+"../../../../../../../../qpsk9866.srcs/sources_1/new/top.v" \
+
+sv xil_defaultlib  \
+"../../../../../tb_afe_datapath.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

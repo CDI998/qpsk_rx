@@ -1,0 +1,456 @@
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
+| Date         : Fri Oct 30 22:35:22 2026
+| Host         : DESKTOP-19V7RDI running 64-bit major release  (build 9200)
+| Command      : report_timing -from [get_ports {afe_rx_sync {afe_rx_data[*]}}] -delay_type min -max_paths 8 -file D:/Users/CDI/Desktop/V2/build/dac_debug/adc_hold.rpt
+| Design       : top
+| Device       : 7z010-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             14.426ns  (arrival time - required time)
+  Source:                 afe_rx_data[0]
+                            (input port clocked by afe_txrx_clk  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Destination:            u_afe/u_ad986x_rx/rx_high_data_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by afe_clk_unbuffered  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Path Group:             afe_clk_unbuffered
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            -13.021ns  (afe_clk_unbuffered rise@0.000ns - afe_txrx_clk fall@13.021ns)
+  Data Path Delay:        1.066ns  (logic 0.332ns (31.164%)  route 0.734ns (68.836%))
+  Logic Levels:           2  (IBUF=1 LUT4=1)
+  Input Delay:            0.000ns
+  Clock Path Skew:        -0.566ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.566ns
+    Source Clock Delay      (SCD):    0.000ns = ( 13.021 - 13.021 ) 
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.134ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.072ns
+    Phase Error              (PE):    0.084ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock afe_txrx_clk fall edge)
+                                                     13.021    13.021 f  
+                         input delay                  0.000    13.021    
+    U13                                               0.000    13.021 r  afe_rx_data[0] (IN)
+                         net (fo=0)                   0.000    13.021    afe_rx_data[0]
+    U13                  IBUF (Prop_ibuf_I_O)         0.287    13.308 r  afe_rx_data_IBUF[0]_inst/O
+                         net (fo=1, routed)           0.734    14.042    u_afe/u_ad986x_rx/ad986x_rx_data[0]
+    SLICE_X35Y15         LUT4 (Prop_lut4_I0_O)        0.045    14.087 r  u_afe/u_ad986x_rx/rx_high_data[0]_i_1/O
+                         net (fo=1, routed)           0.000    14.087    u_afe/u_ad986x_rx/rx_high_data[0]_i_1_n_0
+    SLICE_X35Y15         FDCE                                         r  u_afe/u_ad986x_rx/rx_high_data_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock afe_clk_unbuffered rise edge)
+                                                      0.000     0.000 r  
+    U15                                               0.000     0.000 r  afe_txrx_clk (IN)
+                         net (fo=0)                   0.000     0.000    afe_txrx_clk
+    U15                  IBUF (Prop_ibuf_I_O)         0.513     0.513 r  afe_txrx_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.588     1.101    u_afe/afe_txrx_clk_IBUF
+    MMCME2_ADV_X0Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.050    -1.949 r  u_afe/u_afe_clk_mmcm/CLKOUT0
+                         net (fo=1, routed)           0.528    -1.421    u_afe/afe_clk_unbuffered
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.029    -1.392 r  u_afe/u_afe_clk_bufg/O
+                         net (fo=614, routed)         0.826    -0.566    u_afe/u_ad986x_rx/ad986x_clk
+    SLICE_X35Y15         FDCE                                         r  u_afe/u_ad986x_rx/rx_high_data_reg[0]/C
+                         clock pessimism              0.000    -0.566    
+                         clock uncertainty            0.134    -0.431    
+    SLICE_X35Y15         FDCE (Hold_fdce_C_D)         0.092    -0.339    u_afe/u_ad986x_rx/rx_high_data_reg[0]
+  -------------------------------------------------------------------
+                         required time                          0.339    
+                         arrival time                          14.087    
+  -------------------------------------------------------------------
+                         slack                                 14.426    
+
+Slack (MET) :             14.426ns  (arrival time - required time)
+  Source:                 afe_rx_sync
+                            (input port clocked by afe_txrx_clk  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Destination:            u_afe/u_ad986x_rx/rx_fifo_wr_en_reg/D
+                            (rising edge-triggered cell FDRE clocked by afe_clk_unbuffered  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Path Group:             afe_clk_unbuffered
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            -13.021ns  (afe_clk_unbuffered rise@0.000ns - afe_txrx_clk fall@13.021ns)
+  Data Path Delay:        1.063ns  (logic 0.324ns (30.469%)  route 0.739ns (69.531%))
+  Logic Levels:           2  (IBUF=1 LUT5=1)
+  Input Delay:            0.000ns
+  Clock Path Skew:        -0.568ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.568ns
+    Source Clock Delay      (SCD):    0.000ns = ( 13.021 - 13.021 ) 
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.134ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.072ns
+    Phase Error              (PE):    0.084ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock afe_txrx_clk fall edge)
+                                                     13.021    13.021 f  
+                         input delay                  0.000    13.021    
+    T15                                               0.000    13.021 r  afe_rx_sync (IN)
+                         net (fo=0)                   0.000    13.021    afe_rx_sync
+    T15                  IBUF (Prop_ibuf_I_O)         0.279    13.300 r  afe_rx_sync_IBUF_inst/O
+                         net (fo=4, routed)           0.739    14.039    u_afe/u_ad986x_rx/ad986x_rx_sync
+    SLICE_X33Y16         LUT5 (Prop_lut5_I2_O)        0.045    14.084 r  u_afe/u_ad986x_rx/rx_fifo_wr_en_i_1/O
+                         net (fo=1, routed)           0.000    14.084    u_afe/u_ad986x_rx/rx_fifo_wr_en_i_1_n_0
+    SLICE_X33Y16         FDRE                                         r  u_afe/u_ad986x_rx/rx_fifo_wr_en_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock afe_clk_unbuffered rise edge)
+                                                      0.000     0.000 r  
+    U15                                               0.000     0.000 r  afe_txrx_clk (IN)
+                         net (fo=0)                   0.000     0.000    afe_txrx_clk
+    U15                  IBUF (Prop_ibuf_I_O)         0.513     0.513 r  afe_txrx_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.588     1.101    u_afe/afe_txrx_clk_IBUF
+    MMCME2_ADV_X0Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.050    -1.949 r  u_afe/u_afe_clk_mmcm/CLKOUT0
+                         net (fo=1, routed)           0.528    -1.421    u_afe/afe_clk_unbuffered
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.029    -1.392 r  u_afe/u_afe_clk_bufg/O
+                         net (fo=614, routed)         0.824    -0.568    u_afe/u_ad986x_rx/ad986x_clk
+    SLICE_X33Y16         FDRE                                         r  u_afe/u_ad986x_rx/rx_fifo_wr_en_reg/C
+                         clock pessimism              0.000    -0.568    
+                         clock uncertainty            0.134    -0.433    
+    SLICE_X33Y16         FDRE (Hold_fdre_C_D)         0.091    -0.342    u_afe/u_ad986x_rx/rx_fifo_wr_en_reg
+  -------------------------------------------------------------------
+                         required time                          0.342    
+                         arrival time                          14.084    
+  -------------------------------------------------------------------
+                         slack                                 14.426    
+
+Slack (MET) :             14.442ns  (arrival time - required time)
+  Source:                 afe_rx_data[3]
+                            (input port clocked by afe_txrx_clk  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Destination:            u_afe/u_ad986x_rx/rx_fifo_data_reg[1]/D
+                            (rising edge-triggered cell FDCE clocked by afe_clk_unbuffered  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Path Group:             afe_clk_unbuffered
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            -13.021ns  (afe_clk_unbuffered rise@0.000ns - afe_txrx_clk fall@13.021ns)
+  Data Path Delay:        1.109ns  (logic 0.351ns (31.691%)  route 0.757ns (68.309%))
+  Logic Levels:           2  (IBUF=1 LUT4=1)
+  Input Delay:            0.000ns
+  Clock Path Skew:        -0.567ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.567ns
+    Source Clock Delay      (SCD):    0.000ns = ( 13.021 - 13.021 ) 
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.134ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.072ns
+    Phase Error              (PE):    0.084ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock afe_txrx_clk fall edge)
+                                                     13.021    13.021 f  
+                         input delay                  0.000    13.021    
+    W13                                               0.000    13.021 r  afe_rx_data[3] (IN)
+                         net (fo=0)                   0.000    13.021    afe_rx_data[3]
+    W13                  IBUF (Prop_ibuf_I_O)         0.306    13.327 r  afe_rx_data_IBUF[3]_inst/O
+                         net (fo=2, routed)           0.757    14.085    u_afe/u_ad986x_rx/ad986x_rx_data[3]
+    SLICE_X34Y16         LUT4 (Prop_lut4_I0_O)        0.045    14.130 r  u_afe/u_ad986x_rx/rx_fifo_data[1]_i_1/O
+                         net (fo=1, routed)           0.000    14.130    u_afe/u_ad986x_rx/rx_fifo_data[1]_i_1_n_0
+    SLICE_X34Y16         FDCE                                         r  u_afe/u_ad986x_rx/rx_fifo_data_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock afe_clk_unbuffered rise edge)
+                                                      0.000     0.000 r  
+    U15                                               0.000     0.000 r  afe_txrx_clk (IN)
+                         net (fo=0)                   0.000     0.000    afe_txrx_clk
+    U15                  IBUF (Prop_ibuf_I_O)         0.513     0.513 r  afe_txrx_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.588     1.101    u_afe/afe_txrx_clk_IBUF
+    MMCME2_ADV_X0Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.050    -1.949 r  u_afe/u_afe_clk_mmcm/CLKOUT0
+                         net (fo=1, routed)           0.528    -1.421    u_afe/afe_clk_unbuffered
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.029    -1.392 r  u_afe/u_afe_clk_bufg/O
+                         net (fo=614, routed)         0.825    -0.567    u_afe/u_ad986x_rx/ad986x_clk
+    SLICE_X34Y16         FDCE                                         r  u_afe/u_ad986x_rx/rx_fifo_data_reg[1]/C
+                         clock pessimism              0.000    -0.567    
+                         clock uncertainty            0.134    -0.432    
+    SLICE_X34Y16         FDCE (Hold_fdce_C_D)         0.120    -0.312    u_afe/u_ad986x_rx/rx_fifo_data_reg[1]
+  -------------------------------------------------------------------
+                         required time                          0.312    
+                         arrival time                          14.130    
+  -------------------------------------------------------------------
+                         slack                                 14.442    
+
+Slack (MET) :             14.471ns  (arrival time - required time)
+  Source:                 afe_rx_data[1]
+                            (input port clocked by afe_txrx_clk  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Destination:            u_afe/u_ad986x_rx/rx_high_data_reg[1]/D
+                            (rising edge-triggered cell FDCE clocked by afe_clk_unbuffered  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Path Group:             afe_clk_unbuffered
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            -13.021ns  (afe_clk_unbuffered rise@0.000ns - afe_txrx_clk fall@13.021ns)
+  Data Path Delay:        1.109ns  (logic 0.332ns (29.885%)  route 0.778ns (70.115%))
+  Logic Levels:           2  (IBUF=1 LUT4=1)
+  Input Delay:            0.000ns
+  Clock Path Skew:        -0.566ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.566ns
+    Source Clock Delay      (SCD):    0.000ns = ( 13.021 - 13.021 ) 
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.134ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.072ns
+    Phase Error              (PE):    0.084ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock afe_txrx_clk fall edge)
+                                                     13.021    13.021 f  
+                         input delay                  0.000    13.021    
+    V13                                               0.000    13.021 r  afe_rx_data[1] (IN)
+                         net (fo=0)                   0.000    13.021    afe_rx_data[1]
+    V13                  IBUF (Prop_ibuf_I_O)         0.287    13.308 r  afe_rx_data_IBUF[1]_inst/O
+                         net (fo=1, routed)           0.778    14.085    u_afe/u_ad986x_rx/ad986x_rx_data[1]
+    SLICE_X35Y15         LUT4 (Prop_lut4_I0_O)        0.045    14.130 r  u_afe/u_ad986x_rx/rx_high_data[1]_i_1/O
+                         net (fo=1, routed)           0.000    14.130    u_afe/u_ad986x_rx/rx_high_data[1]_i_1_n_0
+    SLICE_X35Y15         FDCE                                         r  u_afe/u_ad986x_rx/rx_high_data_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock afe_clk_unbuffered rise edge)
+                                                      0.000     0.000 r  
+    U15                                               0.000     0.000 r  afe_txrx_clk (IN)
+                         net (fo=0)                   0.000     0.000    afe_txrx_clk
+    U15                  IBUF (Prop_ibuf_I_O)         0.513     0.513 r  afe_txrx_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.588     1.101    u_afe/afe_txrx_clk_IBUF
+    MMCME2_ADV_X0Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.050    -1.949 r  u_afe/u_afe_clk_mmcm/CLKOUT0
+                         net (fo=1, routed)           0.528    -1.421    u_afe/afe_clk_unbuffered
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.029    -1.392 r  u_afe/u_afe_clk_bufg/O
+                         net (fo=614, routed)         0.826    -0.566    u_afe/u_ad986x_rx/ad986x_clk
+    SLICE_X35Y15         FDCE                                         r  u_afe/u_ad986x_rx/rx_high_data_reg[1]/C
+                         clock pessimism              0.000    -0.566    
+                         clock uncertainty            0.134    -0.431    
+    SLICE_X35Y15         FDCE (Hold_fdce_C_D)         0.091    -0.340    u_afe/u_ad986x_rx/rx_high_data_reg[1]
+  -------------------------------------------------------------------
+                         required time                          0.340    
+                         arrival time                          14.130    
+  -------------------------------------------------------------------
+                         slack                                 14.471    
+
+Slack (MET) :             14.471ns  (arrival time - required time)
+  Source:                 afe_rx_data[2]
+                            (input port clocked by afe_txrx_clk  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Destination:            u_afe/u_ad986x_rx/rx_fifo_data_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by afe_clk_unbuffered  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Path Group:             afe_clk_unbuffered
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            -13.021ns  (afe_clk_unbuffered rise@0.000ns - afe_txrx_clk fall@13.021ns)
+  Data Path Delay:        1.139ns  (logic 0.345ns (30.293%)  route 0.794ns (69.707%))
+  Logic Levels:           2  (IBUF=1 LUT4=1)
+  Input Delay:            0.000ns
+  Clock Path Skew:        -0.567ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.567ns
+    Source Clock Delay      (SCD):    0.000ns = ( 13.021 - 13.021 ) 
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.134ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.072ns
+    Phase Error              (PE):    0.084ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock afe_txrx_clk fall edge)
+                                                     13.021    13.021 f  
+                         input delay                  0.000    13.021    
+    V12                                               0.000    13.021 r  afe_rx_data[2] (IN)
+                         net (fo=0)                   0.000    13.021    afe_rx_data[2]
+    V12                  IBUF (Prop_ibuf_I_O)         0.300    13.321 r  afe_rx_data_IBUF[2]_inst/O
+                         net (fo=2, routed)           0.794    14.115    u_afe/u_ad986x_rx/ad986x_rx_data[2]
+    SLICE_X34Y16         LUT4 (Prop_lut4_I0_O)        0.045    14.160 r  u_afe/u_ad986x_rx/rx_fifo_data[0]_i_1/O
+                         net (fo=1, routed)           0.000    14.160    u_afe/u_ad986x_rx/rx_fifo_data[0]_i_1_n_0
+    SLICE_X34Y16         FDCE                                         r  u_afe/u_ad986x_rx/rx_fifo_data_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock afe_clk_unbuffered rise edge)
+                                                      0.000     0.000 r  
+    U15                                               0.000     0.000 r  afe_txrx_clk (IN)
+                         net (fo=0)                   0.000     0.000    afe_txrx_clk
+    U15                  IBUF (Prop_ibuf_I_O)         0.513     0.513 r  afe_txrx_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.588     1.101    u_afe/afe_txrx_clk_IBUF
+    MMCME2_ADV_X0Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.050    -1.949 r  u_afe/u_afe_clk_mmcm/CLKOUT0
+                         net (fo=1, routed)           0.528    -1.421    u_afe/afe_clk_unbuffered
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.029    -1.392 r  u_afe/u_afe_clk_bufg/O
+                         net (fo=614, routed)         0.825    -0.567    u_afe/u_ad986x_rx/ad986x_clk
+    SLICE_X34Y16         FDCE                                         r  u_afe/u_ad986x_rx/rx_fifo_data_reg[0]/C
+                         clock pessimism              0.000    -0.567    
+                         clock uncertainty            0.134    -0.432    
+    SLICE_X34Y16         FDCE (Hold_fdce_C_D)         0.121    -0.311    u_afe/u_ad986x_rx/rx_fifo_data_reg[0]
+  -------------------------------------------------------------------
+                         required time                          0.311    
+                         arrival time                          14.160    
+  -------------------------------------------------------------------
+                         slack                                 14.471    
+
+Slack (MET) :             14.478ns  (arrival time - required time)
+  Source:                 afe_rx_data[2]
+                            (input port clocked by afe_txrx_clk  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Destination:            u_afe/u_ad986x_rx/rx_high_data_reg[2]/D
+                            (rising edge-triggered cell FDCE clocked by afe_clk_unbuffered  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Path Group:             afe_clk_unbuffered
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            -13.021ns  (afe_clk_unbuffered rise@0.000ns - afe_txrx_clk fall@13.021ns)
+  Data Path Delay:        1.146ns  (logic 0.345ns (30.108%)  route 0.801ns (69.892%))
+  Logic Levels:           2  (IBUF=1 LUT4=1)
+  Input Delay:            0.000ns
+  Clock Path Skew:        -0.566ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.566ns
+    Source Clock Delay      (SCD):    0.000ns = ( 13.021 - 13.021 ) 
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.134ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.072ns
+    Phase Error              (PE):    0.084ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock afe_txrx_clk fall edge)
+                                                     13.021    13.021 f  
+                         input delay                  0.000    13.021    
+    V12                                               0.000    13.021 r  afe_rx_data[2] (IN)
+                         net (fo=0)                   0.000    13.021    afe_rx_data[2]
+    V12                  IBUF (Prop_ibuf_I_O)         0.300    13.321 r  afe_rx_data_IBUF[2]_inst/O
+                         net (fo=2, routed)           0.801    14.122    u_afe/u_ad986x_rx/ad986x_rx_data[2]
+    SLICE_X34Y15         LUT4 (Prop_lut4_I0_O)        0.045    14.167 r  u_afe/u_ad986x_rx/rx_high_data[2]_i_1/O
+                         net (fo=1, routed)           0.000    14.167    u_afe/u_ad986x_rx/rx_high_data[2]_i_1_n_0
+    SLICE_X34Y15         FDCE                                         r  u_afe/u_ad986x_rx/rx_high_data_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock afe_clk_unbuffered rise edge)
+                                                      0.000     0.000 r  
+    U15                                               0.000     0.000 r  afe_txrx_clk (IN)
+                         net (fo=0)                   0.000     0.000    afe_txrx_clk
+    U15                  IBUF (Prop_ibuf_I_O)         0.513     0.513 r  afe_txrx_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.588     1.101    u_afe/afe_txrx_clk_IBUF
+    MMCME2_ADV_X0Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.050    -1.949 r  u_afe/u_afe_clk_mmcm/CLKOUT0
+                         net (fo=1, routed)           0.528    -1.421    u_afe/afe_clk_unbuffered
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.029    -1.392 r  u_afe/u_afe_clk_bufg/O
+                         net (fo=614, routed)         0.826    -0.566    u_afe/u_ad986x_rx/ad986x_clk
+    SLICE_X34Y15         FDCE                                         r  u_afe/u_ad986x_rx/rx_high_data_reg[2]/C
+                         clock pessimism              0.000    -0.566    
+                         clock uncertainty            0.134    -0.431    
+    SLICE_X34Y15         FDCE (Hold_fdce_C_D)         0.120    -0.311    u_afe/u_ad986x_rx/rx_high_data_reg[2]
+  -------------------------------------------------------------------
+                         required time                          0.311    
+                         arrival time                          14.167    
+  -------------------------------------------------------------------
+                         slack                                 14.478    
+
+Slack (MET) :             14.481ns  (arrival time - required time)
+  Source:                 afe_rx_data[3]
+                            (input port clocked by afe_txrx_clk  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Destination:            u_afe/u_ad986x_rx/rx_high_data_reg[3]/D
+                            (rising edge-triggered cell FDCE clocked by afe_clk_unbuffered  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Path Group:             afe_clk_unbuffered
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            -13.021ns  (afe_clk_unbuffered rise@0.000ns - afe_txrx_clk fall@13.021ns)
+  Data Path Delay:        1.150ns  (logic 0.351ns (30.560%)  route 0.798ns (69.440%))
+  Logic Levels:           2  (IBUF=1 LUT4=1)
+  Input Delay:            0.000ns
+  Clock Path Skew:        -0.566ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.566ns
+    Source Clock Delay      (SCD):    0.000ns = ( 13.021 - 13.021 ) 
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.134ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.072ns
+    Phase Error              (PE):    0.084ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock afe_txrx_clk fall edge)
+                                                     13.021    13.021 f  
+                         input delay                  0.000    13.021    
+    W13                                               0.000    13.021 r  afe_rx_data[3] (IN)
+                         net (fo=0)                   0.000    13.021    afe_rx_data[3]
+    W13                  IBUF (Prop_ibuf_I_O)         0.306    13.327 r  afe_rx_data_IBUF[3]_inst/O
+                         net (fo=2, routed)           0.798    14.126    u_afe/u_ad986x_rx/ad986x_rx_data[3]
+    SLICE_X34Y15         LUT4 (Prop_lut4_I0_O)        0.045    14.171 r  u_afe/u_ad986x_rx/rx_high_data[3]_i_1/O
+                         net (fo=1, routed)           0.000    14.171    u_afe/u_ad986x_rx/rx_high_data[3]_i_1_n_0
+    SLICE_X34Y15         FDCE                                         r  u_afe/u_ad986x_rx/rx_high_data_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock afe_clk_unbuffered rise edge)
+                                                      0.000     0.000 r  
+    U15                                               0.000     0.000 r  afe_txrx_clk (IN)
+                         net (fo=0)                   0.000     0.000    afe_txrx_clk
+    U15                  IBUF (Prop_ibuf_I_O)         0.513     0.513 r  afe_txrx_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.588     1.101    u_afe/afe_txrx_clk_IBUF
+    MMCME2_ADV_X0Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.050    -1.949 r  u_afe/u_afe_clk_mmcm/CLKOUT0
+                         net (fo=1, routed)           0.528    -1.421    u_afe/afe_clk_unbuffered
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.029    -1.392 r  u_afe/u_afe_clk_bufg/O
+                         net (fo=614, routed)         0.826    -0.566    u_afe/u_ad986x_rx/ad986x_clk
+    SLICE_X34Y15         FDCE                                         r  u_afe/u_ad986x_rx/rx_high_data_reg[3]/C
+                         clock pessimism              0.000    -0.566    
+                         clock uncertainty            0.134    -0.431    
+    SLICE_X34Y15         FDCE (Hold_fdce_C_D)         0.121    -0.310    u_afe/u_ad986x_rx/rx_high_data_reg[3]
+  -------------------------------------------------------------------
+                         required time                          0.310    
+                         arrival time                          14.171    
+  -------------------------------------------------------------------
+                         slack                                 14.481    
+
+Slack (MET) :             14.495ns  (arrival time - required time)
+  Source:                 afe_rx_data[4]
+                            (input port clocked by afe_txrx_clk  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Destination:            u_afe/u_ad986x_rx/rx_high_data_reg[4]/D
+                            (rising edge-triggered cell FDCE clocked by afe_clk_unbuffered  {rise@0.000ns fall@13.021ns period=26.042ns})
+  Path Group:             afe_clk_unbuffered
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            -13.021ns  (afe_clk_unbuffered rise@0.000ns - afe_txrx_clk fall@13.021ns)
+  Data Path Delay:        1.164ns  (logic 0.354ns (30.413%)  route 0.810ns (69.587%))
+  Logic Levels:           2  (IBUF=1 LUT4=1)
+  Input Delay:            0.000ns
+  Clock Path Skew:        -0.566ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.566ns
+    Source Clock Delay      (SCD):    0.000ns = ( 13.021 - 13.021 ) 
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.134ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.072ns
+    Phase Error              (PE):    0.084ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock afe_txrx_clk fall edge)
+                                                     13.021    13.021 f  
+                         input delay                  0.000    13.021    
+    T12                                               0.000    13.021 r  afe_rx_data[4] (IN)
+                         net (fo=0)                   0.000    13.021    afe_rx_data[4]
+    T12                  IBUF (Prop_ibuf_I_O)         0.309    13.330 r  afe_rx_data_IBUF[4]_inst/O
+                         net (fo=2, routed)           0.810    14.140    u_afe/u_ad986x_rx/ad986x_rx_data[4]
+    SLICE_X34Y15         LUT4 (Prop_lut4_I0_O)        0.045    14.185 r  u_afe/u_ad986x_rx/rx_high_data[4]_i_1/O
+                         net (fo=1, routed)           0.000    14.185    u_afe/u_ad986x_rx/rx_high_data[4]_i_1_n_0
+    SLICE_X34Y15         FDCE                                         r  u_afe/u_ad986x_rx/rx_high_data_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock afe_clk_unbuffered rise edge)
+                                                      0.000     0.000 r  
+    U15                                               0.000     0.000 r  afe_txrx_clk (IN)
+                         net (fo=0)                   0.000     0.000    afe_txrx_clk
+    U15                  IBUF (Prop_ibuf_I_O)         0.513     0.513 r  afe_txrx_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.588     1.101    u_afe/afe_txrx_clk_IBUF
+    MMCME2_ADV_X0Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.050    -1.949 r  u_afe/u_afe_clk_mmcm/CLKOUT0
+                         net (fo=1, routed)           0.528    -1.421    u_afe/afe_clk_unbuffered
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.029    -1.392 r  u_afe/u_afe_clk_bufg/O
+                         net (fo=614, routed)         0.826    -0.566    u_afe/u_ad986x_rx/ad986x_clk
+    SLICE_X34Y15         FDCE                                         r  u_afe/u_ad986x_rx/rx_high_data_reg[4]/C
+                         clock pessimism              0.000    -0.566    
+                         clock uncertainty            0.134    -0.431    
+    SLICE_X34Y15         FDCE (Hold_fdce_C_D)         0.121    -0.310    u_afe/u_ad986x_rx/rx_high_data_reg[4]
+  -------------------------------------------------------------------
+                         required time                          0.310    
+                         arrival time                          14.185    
+  -------------------------------------------------------------------
+                         slack                                 14.495    
+
+
+
+

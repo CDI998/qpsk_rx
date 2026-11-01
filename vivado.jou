@@ -1,0 +1,58 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sat Oct 31 00:22:30 2026
+# Process ID: 20536
+# Current directory: D:/Users/CDI/Desktop/V2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent5860 D:\Users\CDI\Desktop\V2\qpsk9866.xpr
+# Log file: D:/Users/CDI/Desktop/V2/vivado.log
+# Journal file: D:/Users/CDI/Desktop/V2\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/Users/CDI/Desktop/V2/qpsk9866.xpr
+update_compile_order -fileset sources_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {D:\Users\CDI\Desktop\debug\read_all_spi_reg\top.bit} [get_hw_devices xc7z010_1]
+set_property PROBES.FILE {D:\Users\CDI\Desktop\debug\read_all_spi_reg\top.ltx} [get_hw_devices xc7z010_1]
+set_property FULL_PROBES.FILE {D:\Users\CDI\Desktop\debug\read_all_spi_reg\top.ltx} [get_hw_devices xc7z010_1]
+current_hw_device [get_hw_devices xc7z010_1]
+refresh_hw_device [lindex [get_hw_devices xc7z010_1] 0]
+set_property PROBES.FILE {D:/Users/CDI/Desktop/debug/read_all_spi_reg/top.ltx} [get_hw_devices xc7z010_1]
+set_property FULL_PROBES.FILE {D:/Users/CDI/Desktop/debug/read_all_spi_reg/top.ltx} [get_hw_devices xc7z010_1]
+set_property PROGRAM.FILE {D:/Users/CDI/Desktop/debug/read_all_spi_reg/top.bit} [get_hw_devices xc7z010_1]
+program_hw_devices [get_hw_devices xc7z010_1]
+refresh_hw_device [lindex [get_hw_devices xc7z010_1] 0]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_1 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]]
+set_property PROBES.FILE {D:/Users/CDI/Desktop/debug/on_off_clock/top.ltx} [get_hw_devices xc7z010_1]
+set_property FULL_PROBES.FILE {D:/Users/CDI/Desktop/debug/on_off_clock/top.ltx} [get_hw_devices xc7z010_1]
+set_property PROGRAM.FILE {D:/Users/CDI/Desktop/debug/on_off_clock/top.bit} [get_hw_devices xc7z010_1]
+program_hw_devices [get_hw_devices xc7z010_1]
+refresh_hw_device [lindex [get_hw_devices xc7z010_1] 0]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_spi"}]]
+set_property PROBES.FILE {D:/Users/CDI/Desktop/top.ltx} [get_hw_devices xc7z010_1]
+set_property FULL_PROBES.FILE {D:/Users/CDI/Desktop/top.ltx} [get_hw_devices xc7z010_1]
+set_property PROGRAM.FILE {D:/Users/CDI/Desktop/top.bit} [get_hw_devices xc7z010_1]
+program_hw_devices [get_hw_devices xc7z010_1]
+refresh_hw_device [lindex [get_hw_devices xc7z010_1] 0]
+add_wave -into {hw_ila_data_1.wcfg} -radix hex { {u_afe/afe_conf_done} {u_afe/afe_rst_n} {u_afe/u_ad986x_rx/adc_sample} {u_afe/u_ad986x_rx/adc_sample_valid} {u_afe/u_ad986x_tx/dac_sample} {u_afe/u_ad986x_tx/dac_sample_valid} }
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_dac"}]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_dac"}]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_dac"}]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z010_1] -filter {CELL_NAME=~"u_ila_dac"}]

@@ -1,0 +1,4 @@
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+CTRL_TEST_PASS: eight configurations/readbacks including SPI PGA and LPF bypass, dynamic PGA, failure blocks startup
+$finish called at time : 23311010 ns : File "D:/Users/CDI/Desktop/V2/build/rx_spi_gain_check/isolated/tb_ad986x_ctrl_init.sv" Line 75

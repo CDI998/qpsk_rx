@@ -1,0 +1,80 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sat Oct 31 23:43:45 2026
+# Process ID: 5352
+# Current directory: D:/Users/CDI/Desktop/V2
+# Command line: vivado.exe -mode batch -source C:/Users/CDI/.codex/visualizations/2026/10/30/01a18cdc-ad70-7a02-8ee0-943088c762c1/capture_rx_spi_gain_check.tcl -log build/rx_spi_gain_check/capture.log -journal build/rx_spi_gain_check/capture.jou
+# Log file: D:/Users/CDI/Desktop/V2/build/rx_spi_gain_check/capture.log
+# Journal file: D:/Users/CDI/Desktop/V2\build/rx_spi_gain_check/capture.jou
+#-----------------------------------------------------------
+source C:/Users/CDI/.codex/visualizations/2026/10/30/01a18cdc-ad70-7a02-8ee0-943088c762c1/capture_rx_spi_gain_check.tcl
+# set root "D:/Users/CDI/Desktop/V2"
+# set release [file join $root build rx_lpf_bypass isolated]
+# set trial [file join $root build rx_spi_gain_check isolated]
+# open_hw_manager
+# connect_hw_server -url localhost:3121
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+# set targets [get_hw_targets]
+# if {[llength $targets] != 1} {error "Expected one JTAG target"}
+# current_hw_target [lindex $targets 0]
+# open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210512180081
+# set dev [get_hw_devices xc7z010_1]
+# current_hw_device $dev
+# set_property PROBES.FILE [file join $release top.ltx] $dev
+# refresh_hw_device $dev
+INFO: [Labtools 27-2302] Device xc7z010 (JTAG device index = 1) is programmed with a design that has 1 ILA core(s).
+# set ila [get_hw_ilas -of_objects $dev]
+# run_hw_ila -trigger_now $ila
+INFO: [Labtools 27-1964] The ILA core 'hw_ila_1' trigger was armed at 2026-Oct-31 23:43:53
+# wait_on_hw_ila -timeout 1 $ila
+INFO: [Labtools 27-1966] The ILA core 'hw_ila_1' triggered at 2026-Oct-31 23:43:53
+# write_hw_ila_data -csv_file -force [file join $trial baseline.csv] [upload_hw_ila_data $ila]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+INFO: [Labtools 27-2302] Device xc7z010 (JTAG device index = 1) is programmed with a design that has 1 ILA core(s).
+INFO: [Labtools 27-1964] The ILA core 'hw_ila_1' trigger was armed at 2026-Oct-31 23:43:56
+INFO: [Labtools 27-1966] The ILA core 'hw_ila_1' triggered at 2026-Oct-31 23:43:56
+SPI_GAIN_CAPTURE_PASS
+# set rc [catch {
+#     set_property PROGRAM.FILE [file join $trial top.bit] $dev
+#     set_property PROBES.FILE [file join $trial top.ltx] $dev
+#     program_hw_devices $dev
+#     refresh_hw_device $dev
+#     after 1000
+#     set ila [get_hw_ilas -of_objects $dev]
+#     run_hw_ila -trigger_now $ila
+#     wait_on_hw_ila -timeout 1 $ila
+#     write_hw_ila_data -csv_file -force [file join $trial spi_gain.csv] [upload_hw_ila_data $ila]
+#     puts "SPI_GAIN_CAPTURE_PASS"
+# } msg]
+# puts "SPI_GAIN_RESULT=$rc $msg"
+SPI_GAIN_RESULT=0 
+# set_property PROGRAM.FILE [file join $release top.bit] $dev
+# set_property PROBES.FILE [file join $release top.ltx] $dev
+# program_hw_devices $dev
+INFO: [Labtools 27-3164] End of startup status: HIGH
+# refresh_hw_device $dev
+INFO: [Labtools 27-2302] Device xc7z010 (JTAG device index = 1) is programmed with a design that has 1 ILA core(s).
+# after 1000
+# set ila [get_hw_ilas -of_objects $dev]
+# run_hw_ila -trigger_now $ila
+INFO: [Labtools 27-1964] The ILA core 'hw_ila_1' trigger was armed at 2026-Oct-31 23:43:59
+# wait_on_hw_ila -timeout 1 $ila
+INFO: [Labtools 27-1966] The ILA core 'hw_ila_1' triggered at 2026-Oct-31 23:43:59
+# write_hw_ila_data -csv_file -force [file join $trial restored.csv] [upload_hw_ila_data $ila]
+# puts "LPF_BYPASS_MINUS6DB_RESTORED"
+LPF_BYPASS_MINUS6DB_RESTORED
+# close_hw_manager
+****** Webtalk v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source D:/Users/CDI/Desktop/V2/.Xil/Vivado-5352-DESKTOP-19V7RDI/webtalk/labtool_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Sat Oct 31 23:44:01 2026...
+# if {$rc} {error $msg}
+INFO: [Common 17-206] Exiting Vivado at Sat Oct 31 23:44:01 2026...

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sat Oct 31 20:06:08 2026
+# Process ID: 5396
+# Current directory: D:/Users/CDI/Desktop/V2
+# Command line: vivado.exe -mode batch -source scripts/build_v2_sine_5mhz.tcl -log build/sine_5mhz/build.log -journal build/sine_5mhz/build.jou
+# Log file: D:/Users/CDI/Desktop/V2/build/sine_5mhz/build.log
+# Journal file: D:/Users/CDI/Desktop/V2\build/sine_5mhz/build.jou
+#-----------------------------------------------------------
+source scripts/build_v2_sine_5mhz.tcl
