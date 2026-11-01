@@ -6,7 +6,8 @@ verilog xil_defaultlib  \
 "../../../../qpsk9866.srcs/sources_1/new/ad986x_rx.v" \
 "../../../../qpsk9866.srcs/sources_1/new/ad986x_tx.v" \
 "../../../../qpsk9866.srcs/sources_1/new/afe.v" \
-"../../../../qpsk9866.srcs/sources_1/new/sine_source.v" \
+"../../../../qpsk9866.srcs/sources_1/new/frame_manager.v" \
+"../../../../qpsk9866.srcs/sources_1/new/qpsk_source.v" \
 "../../../../qpsk9866.srcs/sources_1/new/spi_master.v" \
 "../../../../qpsk9866.srcs/sources_1/new/top.v" \
 

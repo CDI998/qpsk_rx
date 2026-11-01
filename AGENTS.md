@@ -8,10 +8,10 @@
 
 # qpsk9866工程约定
 
-- 当前设计源为sources_1/new中的top、afe、ad986x_ctrl、ad986x_tx、ad986x_rx、sine_source和spi_master。所有HDL为GBK/CP936、无BOM，保留用户的端口顺序；命名小写，端口和变量有简短对齐注释。
-- top连接独立正弦源和AFE业务接口；TX/RX只负责样点协议，不在驱动内生成正弦。原有模块端口名、方向、位宽、顺序保持不变。
+- 当前设计源为sources_1/new中的top、afe、ad986x_ctrl、ad986x_tx、ad986x_rx、qpsk_source和frame_manager和spi_master。所有HDL为GBK/CP936、无BOM，保留用户的端口顺序；命名小写，端口和变量有简短对齐注释。
+- top连接独立QPSK源和AFE业务接口；TX/RX只负责样点协议，不在驱动内生成正弦。原有模块端口名、方向、位宽、顺序保持不变。
 - 两个FIFO仍是12位×1024、独立时钟、FWFT原生IP，直接实例化，不改XCI宽度，不加包装。样本接口和FIFO统一12位。AD9865有效补码在[9:0]，高2位补0；DAC忽略样本[11:10]。芯片引脚低4位段仍使用[5:2]，不是[3:0]。afe、TX、RX与波形源的sample_bits选择10/12位，默认10；有符号运算按有效位数解释符号位。
-- SPI为1MHz，硬件复位10ms，释放后1ms；初始化写入并逐项读回00=80、04=19、05=00、0B=20、0C=01、0D=03，再等待1ms。配置不符时保持数据通路关闭，正常后外部PGA持续生效。
+- SPI为1MHz，硬件复位10ms，释放后1ms；初始化写入并逐项读回00=80、04=19、05=00、0B=20、0C=01、0D=03、07=00、08=60，再等待1ms。配置不符时保持数据通路关闭，正常后外部PGA持续生效。
 - 板上OSCIN=38.4MHz；本次fDAC=76.8MHz，fADC=19.2MHz，RXCLK=38.4MHz。芯片RX数据在RXCLK下降沿更新，FPGA上升沿采集；TX在FPGA下降沿更新，芯片上升沿采集。
 - 保留必要的异步复位、同步释放、CDC同步链及ASYNC_REG。初始化未完成时不接受外部数据；FIFO非空读、非满写。
 - 不手改厂商IP模型、缓存或历史输出。Visio本次不改，仍只维护原有一个文件。
@@ -29,4 +29,5 @@
 
 - 所有完整样本、FIFO和ILA均12位，AD9865高两位补0；不改用户已确认的模块端口和参数。
 - 仅一个u_ila_dac：12位dac_sample（TX FIFO读出锁存）、对应读使能、12位adc_sample（RX FIFO写入前）、对应写使能、afe_rst_n和afe_conf_done。两路均使用AFE上升沿采样；禁止把DAC探针移到FIFO写侧或把ADC探针移到FIFO读侧。
-- top在AFE就绪且RX FIFO非空时持续读取，避免正常运行时积满。原有SPI初始化、正弦源推进、6+4位协议、MMCM和复位整体逻辑不变。
+- top在AFE就绪且RX FIFO非空时持续读取，避免正常运行时积满。原有SPI初始化、QPSK样点推进、6+4位协议、MMCM和复位整体逻辑不变。
+- QPSK发送端现为I/Q根升余弦成形后正交上变频：rolloff=0.35、跨度8符号、48分数相位，6MHz载波、2Msymbol/s、19.2MSPS。滤波历史跨帧保持，FIFO反压时符号时刻与载波同步暂停。系数内置现有qpsk_source.v，不额外维护系数文件或测试脚本。输出保持小幅度，10位峰值约64码以内。

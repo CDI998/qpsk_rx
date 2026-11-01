@@ -34,6 +34,8 @@ module tb_ad986x_ctrl_init;
             6:expected=16'h0b20;7:expected=16'h8b00;
             8:expected=16'h0c01;9:expected=16'h8c00;
             10:expected=16'h0d03;11:expected=16'h8d00;
+            12:expected=16'h0700;13:expected=16'h8700;
+            14:expected=16'h0860;15:expected=16'h8800;
             default:expected=0;
         endcase
     endfunction
@@ -58,11 +60,11 @@ module tb_ad986x_ctrl_init;
     initial begin
         #200;rst_n=1;
         wait(done);#1;
-        if(frames!=12 || pga!=12 || mode!==1) $fatal(1,"Incomplete configuration");
+        if(frames!=16 || pga!=12 || mode!==1) $fatal(1,"Incomplete configuration");
         @(negedge clk);gain=20;#1;
         if(pga!=20) $fatal(1,"External RxPGA control failed");
         repeat(100) @(posedge clk);
-        if(frames!=12 || !cs || sclk) $fatal(1,"Unexpected SPI after initialization");
+        if(frames!=16 || !cs || sclk) $fatal(1,"Unexpected SPI after initialization");
         @(negedge clk);rst_n=0;corrupt=1;
         #100;rst_n=1;
         wait(frames==2);

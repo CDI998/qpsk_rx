@@ -94,7 +94,8 @@ read_verilog -library xil_defaultlib {
   D:/Users/CDI/Desktop/V2/qpsk9866.srcs/sources_1/new/ad986x_rx.v
   D:/Users/CDI/Desktop/V2/qpsk9866.srcs/sources_1/new/ad986x_tx.v
   D:/Users/CDI/Desktop/V2/qpsk9866.srcs/sources_1/new/afe.v
-  D:/Users/CDI/Desktop/V2/qpsk9866.srcs/sources_1/new/sine_source.v
+  D:/Users/CDI/Desktop/V2/qpsk9866.srcs/sources_1/new/frame_manager.v
+  D:/Users/CDI/Desktop/V2/qpsk9866.srcs/sources_1/new/qpsk_source.v
   D:/Users/CDI/Desktop/V2/qpsk9866.srcs/sources_1/new/spi_master.v
   D:/Users/CDI/Desktop/V2/qpsk9866.srcs/sources_1/new/top.v
 }

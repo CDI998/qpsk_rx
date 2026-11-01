@@ -3,6 +3,7 @@
 module tb_afe_datapath;
     reg sys_clk=0,afe_clk=0,rst_n=0;
     always #10 sys_clk=~sys_clk;
+    reg [7:0] regs[0:31];
     real afe_half_ns, model_dac_hz, model_adc_hz;
     // Derive the clock from SPI clock-register semantics, not a fixed clock assumption.
     always begin
@@ -16,7 +17,6 @@ module tb_afe_datapath;
     reg [5:0] adc_bus=0;
     reg adc_sync=1,miso=0;
     reg [9:0] adc_word=0;
-    reg [7:0] regs[0:31];
     reg [15:0] captured;
     reg [7:0] instruction;
     integer bits=0,frames=0,i;
@@ -28,10 +28,22 @@ module tb_afe_datapath;
     reg have_rx=0,check_rx=1;
     reg [11:0] previous_adc_write;
     integer adc_written=0;
+    reg previous_valid=0;
     reg previous_accept=0;
     reg [11:0] previous_sample=0;
     integer signed_sample;
     real ideal,error;
+    real reference_i, reference_q, reference_t;
+    integer reference_tap, reference_symbol;
+    function automatic real rrc_pulse(input real t);
+        real b;
+        begin
+            b=0.35;
+            if(t>4.0 || t< -4.0) rrc_pulse=0.0;
+            else if(t<1.0e-9 && t> -1.0e-9) rrc_pulse=1.0+b*(4.0/3.141592653589793-1.0);
+            else rrc_pulse=($sin(3.141592653589793*t*(1.0-b))+4.0*b*t*$cos(3.141592653589793*t*(1.0+b)))/(3.141592653589793*t*(1.0-16.0*b*b*t*t));
+        end
+    endfunction
     top dut (
         .sys_clk(sys_clk),.sys_rst_n(rst_n),.afe_clkout1(afe_clk),.afe_txrx_clk(afe_clk),
         .afe_rx_sync(adc_sync),.afe_rx_data(adc_bus),.afe_conf_miso(miso),
@@ -66,23 +78,32 @@ module tb_afe_datapath;
         end
     end
     always @(posedge sys_clk) begin
-        if(!rst_n) begin previous_accept=0;previous_sample=0;end
+        if(!rst_n) begin previous_valid=0;previous_accept=0;previous_sample=0;end
         else begin
             if(!dut.afe_init_done && (!dut.afe_tx_full || !dut.afe_rx_empty || tx_en))
                 $fatal(1,"Interfaces active before initialization");
-            if(!previous_accept && dut.afe_tx_sample!==previous_sample)
-                $fatal(1,"Sine phase advanced without FIFO acceptance");
+            if(previous_valid && !previous_accept && (!dut.qpsk_sample_valid || dut.afe_tx_sample!==previous_sample))
+                $fatal(1,"QPSK sample changed while stalled");
             if(check_rx && dut.afe_init_done && dut.afe_rx_rd_en!==!dut.afe_rx_empty)
                 $fatal(1,"Top must continuously drain every available ADC sample");
-            previous_accept=dut.afe_tx_wr_en;previous_sample=dut.afe_tx_sample;
+            previous_valid=dut.qpsk_sample_valid;previous_accept=dut.afe_tx_wr_en;previous_sample=dut.afe_tx_sample;
             if(dut.afe_tx_wr_en) begin
                 if(dut.afe_tx_full) $fatal(1,"Write while full");
                 if(tx_sent>=65536) $fatal(1,"TX scoreboard overflow");
                 signed_sample=$signed(dut.afe_tx_sample[9:0]);
-                ideal=128.0*$sin(6.283185307179586*((tx_sent*10)%96)/96.0);
+                reference_i=0;reference_q=0;
+                for(reference_tap=0;reference_tap<9;reference_tap=reference_tap+1) begin
+                    reference_symbol=tx_sent*5/48-reference_tap;
+                    reference_t=(tx_sent*5%48)/48.0+reference_tap-4.0;
+                    if(reference_symbol>=0) begin
+                        reference_i=reference_i+((reference_symbol%4>=2)?-1.0:1.0)*rrc_pulse(reference_t);
+                        reference_q=reference_q+((reference_symbol%2==1)?-1.0:1.0)*rrc_pulse(reference_t);
+                    end
+                end
+                ideal=28.17067597934368*(reference_i*$cos(6.283185307179586*((tx_sent*5)%16)/16.0)-reference_q*$sin(6.283185307179586*((tx_sent*5)%16)/16.0));
                 error=signed_sample-ideal;
-                if(error>0.51 || error< -0.51 || dut.afe_tx_sample[11:10]!=0)
-                    $fatal(1,"Invalid 2 MHz sine waveform");
+                if(error>0.60 || error< -0.60 || dut.afe_tx_sample[11:10]!=0)
+                    $fatal(1,"Invalid RRC QPSK waveform or symbol order");
                 expected_tx[tx_sent]=dut.afe_tx_sample;tx_sent=tx_sent+1;
             end
             if(dut.afe_init_done && dut.afe_tx_full) backpressure=backpressure+1;
@@ -102,6 +123,8 @@ module tb_afe_datapath;
             if(!tx_sync) begin
                 tx_upper=tx_bus;have_upper=1;
                 packet_present=dut.u_afe.tx_fifo_rd_en;
+                if(tx_seen>=32 && dut.u_afe.afe_rst_n && !packet_present)
+                    $fatal(1,"Unexpected TX FIFO underflow during continuous frames");
                 if(dut.u_afe.u_ad986x_tx.dac_sample_valid!==packet_present)
                     $fatal(1,"DAC probe valid differs from actual FIFO read");
                 if(packet_present && dut.u_afe.u_ad986x_tx.dac_sample!==expected_tx[tx_seen])
@@ -145,7 +168,7 @@ module tb_afe_datapath;
     initial begin
         #200;rst_n=1;
         wait(dut.afe_init_done);#1;
-        if(frames!=12 || !tx_en || mode!==1 || pga!=6'd12 || regs[4]!=8'h19 || regs[11]!=8'h20 || regs[12]!=8'h01 || regs[5]!=0 || regs[13]!=8'h03)
+        if(frames!=16 || !tx_en || mode!==1 || pga!=6'd12 || regs[4]!=8'h19 || regs[11]!=8'h20 || regs[12]!=8'h01 || regs[5]!=0 || regs[13]!=8'h03 || regs[7]!=8'h00 || regs[8]!=8'h60)
             $fatal(1,"Configuration or aggregate startup failed");
         if(regs[12][7:6]!==2'b00 || model_dac_hz<40000000.0 || model_dac_hz>200000000.0 ||
            model_adc_hz<5000000.0 || model_adc_hz>80000000.0 ||
@@ -153,7 +176,7 @@ module tb_afe_datapath;
             $fatal(1,"Illegal full-duplex interpolation or clock frequencies");
         wait(tx_seen>=4096 && rx_seen>=4096);
         if(backpressure==0) $fatal(1,"TX backpressure not exercised");
-        $display("SINE_ADC_TEST_PASS: 2 MHz sine, 4096 physical DAC words, ADC order, 12-bit native FIFOs and backpressure");
+        $display("QPSK_ADC_TEST_PASS: RRC 0.35 span8, 6 MHz carrier, 2 Msymbol/s, 4096 physical DAC words, ADC order, 12-bit native FIFOs and backpressure");
         check_rx=0;
         force dut.afe_rx_rd_en=0;
         wait(dut.u_afe.rx_full);

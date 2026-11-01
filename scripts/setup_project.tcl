@@ -2,9 +2,15 @@ set project_root [file normalize [file join [file dirname [info script]] ..]]
 if {[file normalize [get_property DIRECTORY [current_project]]] ne $project_root} {
     error "Open qpsk9866 before running this script"
 }
-foreach name {top.v ad986x_ctrl.v spi_master.v afe.v ad986x_tx.v ad986x_rx.v sine_source.v} {
+set stale_source [get_files -quiet */sine_source.v]
+if {[llength $stale_source]} {remove_files $stale_source}
+foreach name {top.v ad986x_ctrl.v spi_master.v afe.v ad986x_tx.v ad986x_rx.v qpsk_source.v frame_manager.v} {
     set path [file join $project_root qpsk9866.srcs sources_1 new $name]
     if {![llength [get_files -quiet $path]]} {add_files -norecurse $path}
+    set_property IS_ENABLED true [get_files $path]
+    set_property USED_IN_SYNTHESIS true [get_files $path]
+    set_property USED_IN_IMPLEMENTATION true [get_files $path]
+    set_property USED_IN_SIMULATION true [get_files $path]
 }
 foreach name {tx_fifo rx_fifo} {
     set path [file join $project_root qpsk9866.srcs sources_1 ip $name ${name}.xci]
@@ -21,7 +27,7 @@ foreach name {tb_spi_master.sv tb_ad986x_ctrl_init.sv tb_afe_datapath.sv} {
     set_property USED_IN_IMPLEMENTATION false [get_files $path]
 }
 set_property top top [get_filesets sources_1]
-# Integrated sine / ADC datapath verification.
+# Integrated QPSK / ADC datapath verification.
 set_property top tb_afe_datapath [get_filesets sim_1]
 set_property xsim.simulate.runtime all [get_filesets sim_1]
 update_compile_order -fileset sources_1

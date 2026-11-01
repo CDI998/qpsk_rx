@@ -25,8 +25,9 @@ module top #(
     output wire [5:0] afe_pga       // 芯片PGA控制引脚，配置为控制RxPGA
 );
 
-    wire [11:0] afe_tx_sample;  // 正弦样本，有效数据右对齐
+    wire [11:0] afe_tx_sample;  // QPSK样本，有效数据右对齐
     wire [11:0] afe_rx_sample;  // 接收FIFO当前样本，高2位补0
+    wire qpsk_sample_valid;           // 输出样点有效
     wire afe_tx_wr_en;          // 发送FIFO实际写使能
     wire afe_rx_rd_en;          // 接收FIFO实际读使能
 
@@ -36,17 +37,26 @@ module top #(
 
     wire [5:0] afe_rx_pga = afe_rx_pga_default;  // 传入AFE的RxPGA增益码
 
-    // 查表数据始终就绪；只有FIFO接受当前样本后才推进正弦相位。
-    assign afe_tx_wr_en = afe_init_done && !afe_tx_full;
+    // 查表数据始终就绪；只有FIFO接受当前样本后才推进QPSK相位。
+    assign afe_tx_wr_en = afe_init_done && !afe_tx_full && qpsk_sample_valid;
     assign afe_rx_rd_en = afe_init_done && !afe_rx_empty;
 
-    sine_source #(
-        .sample_bits(10)
-    ) u_sine_source (
-        .sys_clk   (sys_clk),
-        .sys_rst_n (sys_rst_n),
-        .sample_en (afe_tx_wr_en),
-        .sample    (afe_tx_sample)
+    wire [1:0] qpsk_symbol;           // 当前两位符号
+    wire qpsk_symbol_valid;           // 输入符号有效
+    wire qpsk_symbol_ready;           // 符号接收就绪
+
+    frame_manager u_frame_manager (
+        .sys_clk(sys_clk), .sys_rst_n(sys_rst_n),
+        .enable(afe_init_done), .fifo_full(afe_tx_full),
+        .symbol_ready(qpsk_symbol_ready),
+        .symbol_data(qpsk_symbol), .symbol_valid(qpsk_symbol_valid)
+    );
+    qpsk_source #(.sample_bits(10)) u_qpsk_source (
+        .sys_clk(sys_clk), .sys_rst_n(sys_rst_n),
+        .symbol_data(qpsk_symbol), .symbol_valid(qpsk_symbol_valid),
+        .symbol_ready(qpsk_symbol_ready),
+        .sample_en(afe_tx_wr_en), .sample_valid(qpsk_sample_valid),
+        .sample(afe_tx_sample)
     );
 
     // ADC恢复普通读取，保留最近样本供后续处理模块使用。

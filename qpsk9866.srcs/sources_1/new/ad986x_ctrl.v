@@ -49,7 +49,7 @@ module ad986x_ctrl #(
     end
 
     // 2. 配置表：一行对应一个寄存器，地址在前，配置值在后。
-    reg [2:0] config_index;       // 配置表索引，0至5
+    reg [2:0] config_index;       // 配置表索引0到7
     reg [15:0] config_addr_data;  // 当前配置项：[15:8]寄存器地址，[7:0]配置值
 
     always @* begin
@@ -60,6 +60,8 @@ module ad986x_ctrl #(
             3: config_addr_data = 16'h0b20; // PGA引脚控制RxPGA
             4: config_addr_data = 16'h0c01; // 四倍插值、补码、高6位先传
             5: config_addr_data = 16'h0d03; // ADC补码、高6位先传、下降沿更新
+            6: config_addr_data = 16'h0700; // 旁路RX低通，保持正常ADC偏置
+            7: config_addr_data = 16'h0860; // 低通目标码96，写入触发校准
             default: config_addr_data = 16'h0000;
         endcase
     end
@@ -115,7 +117,7 @@ module ad986x_ctrl #(
                     step_check_config: begin
                         if (spi_rx_data[7:0] != config_addr_data[7:0]) begin
                             init_failed <= 1;
-                        end else if (config_index == 5) begin
+                        end else if (config_index == 7) begin
                             init_step <= step_wait_stable;
                         end else begin
                             config_index <= config_index + 1'b1;
