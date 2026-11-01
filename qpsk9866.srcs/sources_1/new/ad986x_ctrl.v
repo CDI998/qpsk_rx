@@ -55,7 +55,7 @@ module ad986x_ctrl #(
     always @* begin
         case (config_index)
             0: config_addr_data = 16'h0080; // 四线SPI，MSB先传
-            1: config_addr_data = 16'h0419; // PLL乘2，ADC取PLL四分频
+            1: config_addr_data = 16'h0419; // PLL倍2，ADC取PLL四分频：19.2 MSPS
             2: config_addr_data = 16'h0500; // 启用内部收发RXCLK
             3: config_addr_data = 16'h0b20; // PGA引脚控制RxPGA
             4: config_addr_data = 16'h0c01; // 四倍插值、补码、高6位先传

@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 module top #(
     parameter integer sys_clk_hz = 50000000,    // 系统时钟频率，单位Hz
-    parameter [5:0] afe_rx_pga_default = 6'd6  // RxPGA默认控制码6，对应-6 dB
+    parameter [5:0] afe_rx_pga_default = 6'd12  // RxPGA默认控制码12，对应0 dB
 )(
     input wire sys_clk,             // 系统时钟，默认50 MHz
     input wire sys_rst_n,           // 系统复位，低有效

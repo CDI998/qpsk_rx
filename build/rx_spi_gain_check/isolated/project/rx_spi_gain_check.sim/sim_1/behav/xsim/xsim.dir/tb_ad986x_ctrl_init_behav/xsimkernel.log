@@ -1,7 +1,0 @@
-Running: xsim.dir/tb_ad986x_ctrl_init_behav/xsimk.exe -simmode gui -wdb tb_ad986x_ctrl_init_behav.wdb -simrunnum 0 -socket 55227
-Design successfully loaded
-Design Loading Memory Usage: 6596 KB (Peak: 6596 KB)
-Design Loading CPU Usage: 0 ms
-Simulation completed
-Simulation Memory Usage: 15276 KB (Peak: 15276 KB)
-Simulation CPU Usage: 500 ms

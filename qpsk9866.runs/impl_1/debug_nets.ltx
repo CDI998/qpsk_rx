@@ -22,21 +22,59 @@
                             "slave_index": 0,
                             "bscan_switch_index": 0
                         },
-                        "uuid": "237DCE7FF4BB5AC2BECEE84544148E4A",
+                        "uuid": "237dce7ff4bb5ac2becee84544148e4a",
                         "pins": [
                             {
                                 "name": "probe0",
                                 "id": 0,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
-                                "isVector": false,
+                                "isVector": true,
                                 "leftIndex": 0,
-                                "rightIndex": 0,
+                                "rightIndex": 11,
                                 "portIndex": 0,
                                 "nets": [
                                     {
-                                        "name": "u_afe/afe_txrx_clk_IBUF",
-                                        "isBus": false
+                                        "name": "u_afe/u_ad986x_tx/dac_sample",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "u_afe/u_ad986x_tx/dac_sample[11]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_tx/dac_sample[10]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_tx/dac_sample[9]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_tx/dac_sample[8]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_tx/dac_sample[7]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_tx/dac_sample[6]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_tx/dac_sample[5]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_tx/dac_sample[4]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_tx/dac_sample[3]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_tx/dac_sample[2]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_tx/dac_sample[1]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_tx/dac_sample[0]"
+                                            }
+                                        ]
                                     }
                                 ]
                             },
@@ -51,7 +89,7 @@
                                 "portIndex": 1,
                                 "nets": [
                                     {
-                                        "name": "u_afe/afe_clk_locked",
+                                        "name": "u_afe/u_ad986x_tx/dac_sample_valid",
                                         "isBus": false
                                     }
                                 ]
@@ -61,14 +99,52 @@
                                 "id": 2,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
-                                "isVector": false,
+                                "isVector": true,
                                 "leftIndex": 0,
-                                "rightIndex": 0,
+                                "rightIndex": 11,
                                 "portIndex": 2,
                                 "nets": [
                                     {
-                                        "name": "afe_conf_mosi_OBUF",
-                                        "isBus": false
+                                        "name": "u_afe/u_ad986x_rx/adc_sample",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "u_afe/u_ad986x_rx/adc_sample[11]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_rx/adc_sample[10]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_rx/adc_sample[9]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_rx/adc_sample[8]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_rx/adc_sample[7]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_rx/adc_sample[6]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_rx/adc_sample[5]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_rx/adc_sample[4]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_rx/adc_sample[3]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_rx/adc_sample[2]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_rx/adc_sample[1]"
+                                            },
+                                            {
+                                                "name": "u_afe/u_ad986x_rx/adc_sample[0]"
+                                            }
+                                        ]
                                     }
                                 ]
                             },
@@ -83,7 +159,7 @@
                                 "portIndex": 3,
                                 "nets": [
                                     {
-                                        "name": "afe_conf_miso_IBUF",
+                                        "name": "u_afe/u_ad986x_rx/adc_sample_valid",
                                         "isBus": false
                                     }
                                 ]
@@ -99,7 +175,7 @@
                                 "portIndex": 4,
                                 "nets": [
                                     {
-                                        "name": "afe_reset_n_OBUF",
+                                        "name": "u_afe/afe_rst_n",
                                         "isBus": false
                                     }
                                 ]

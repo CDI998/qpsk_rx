@@ -3,10 +3,6 @@
 
 # XDC: new/ax7010.xdc
 
-# XDC: new/afe_timing.xdc
-
-# XDC: new/dac_diagnose.xdc
-
 # IP: ip/rx_fifo/rx_fifo.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==rx_fifo || ORIG_REF_NAME==rx_fifo} -quiet] -quiet
 

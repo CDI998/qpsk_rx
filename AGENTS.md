@@ -1,9 +1,9 @@
 # V2版本范围
 
-- 本文件夹只对应硬件V2，状态：贴片中；今天上午的软件版本。
+- 本文件夹只对应硬件V2，状态：现有实板，当前维护和调试版本。
 - RCLK=H1-15，MODE=H1-17，CLKOUT1=H1-16；RESET=H1-4，PGA/SPI保持旧板分配。
 - 此板RCLK入口需要局部CLOCK_DEDICATED_ROUTE FALSE；只允许输入至原有MMCM这一网络，必须检查接口时序。
-- 默认讨论和实板调试基于V1；不得把其他版本的引脚更改混入本目录。
+- 默认讨论和实板调试基于V2；不得把其他版本的引脚更改混入本目录。
 - 不更改已确认模块接口、参数或整体逻辑。保持简洁，不添加冗余功能。
 
 # qpsk9866工程约定
@@ -23,10 +23,9 @@
 
 - SPI已独立为sources_1/new/spi_master.v，ctrl只负责复位、配置表、构造完整16位帧及读回核对。通用SPI采用状态、时钟计数、位计数、收发移位寄存器分工，不加入AXI、FIFO或芯片寄存器解析。
 - spi_master支持四种CPOL/CPHA模式、参数化帧宽、单片选和MSB先传；start只在空闲时接受且保持一个clk，忙时请求忽略。tx_data在接受时锁存；rx_data在done时更新并保持到下一帧完成。当前ctrl使用16位、1MHz、模式0。
-- scripts/verify_spi_ctrl.tcl独立验证SPI和ctrl，不需要收发数据通路。ctrl的三根SPI输出改为wire由子模块直接驱动，端口名称、方向、位宽保持原样；不添加无用转接逻辑。此次未重新生成烧录文件。
 
 - FIFO使能寄存器使用同步复位；FIFO本身仍异步复位，防止RAM控制端异步复位告警。异步复位同步释放与CDC同步链保留。
-- 顶层联调用scripts/verify_afe.tcl；生成位流用scripts/build_afe.tcl。原有接口顺序和12位FIFO保持不变。
+- 唯一配置入口为 scripts/setup_project.tcl，只维护当前工程和 ax7010.xdc，不维护独立诊断或构建脚本。
 
 - 所有完整样本、FIFO和ILA均12位，AD9865高两位补0；不改用户已确认的模块端口和参数。
 - 仅一个u_ila_dac：12位dac_sample（TX FIFO读出锁存）、对应读使能、12位adc_sample（RX FIFO写入前）、对应写使能、afe_rst_n和afe_conf_done。两路均使用AFE上升沿采样；禁止把DAC探针移到FIFO写侧或把ADC探针移到FIFO读侧。

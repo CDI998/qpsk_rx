@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date             : Sun Nov  1 10:05:13 2026
+| Date             : Sun Nov  1 13:24:45 2026
 | Host             : DESKTOP-19V7RDI running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -52,17 +52,17 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.007 |        7 |       --- |             --- |
-| Slice Logic              |    <0.001 |     5767 |       --- |             --- |
-|   LUT as Logic           |    <0.001 |     1687 |     17600 |            9.59 |
-|   Register               |    <0.001 |     2974 |     35200 |            8.45 |
-|   CARRY4                 |    <0.001 |      102 |      4400 |            2.32 |
-|   LUT as Shift Register  |    <0.001 |      136 |      6000 |            2.27 |
+| Clocks                   |     0.008 |        7 |       --- |             --- |
+| Slice Logic              |    <0.001 |     6075 |       --- |             --- |
+|   LUT as Logic           |    <0.001 |     1748 |     17600 |            9.93 |
+|   Register               |    <0.001 |     3100 |     35200 |            8.81 |
+|   CARRY4                 |    <0.001 |      106 |      4400 |            2.41 |
 |   LUT as Distributed RAM |    <0.001 |       24 |      6000 |            0.40 |
-|   F7/F8 Muxes            |    <0.001 |       20 |     17600 |            0.11 |
-|   Others                 |     0.000 |      408 |       --- |             --- |
-| Signals                  |    <0.001 |     3953 |       --- |             --- |
-| Block RAM                |    <0.001 |        3 |        60 |            5.00 |
+|   F7/F8 Muxes            |    <0.001 |       31 |     17600 |            0.18 |
+|   LUT as Shift Register  |    <0.001 |      164 |      6000 |            2.73 |
+|   Others                 |     0.000 |      431 |       --- |             --- |
+| Signals                  |    <0.001 |     4291 |       --- |             --- |
+| Block RAM                |    <0.001 |      7.5 |        60 |           12.50 |
 | MMCM                     |     0.093 |        1 |         2 |           50.00 |
 | I/O                      |    <0.001 |       30 |       100 |           30.00 |
 | Static Power             |     0.094 |          |           |                 |
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.013 |       0.009 |      0.004 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.014 |       0.010 |      0.004 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.057 |       0.051 |      0.005 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -85,7 +85,7 @@ Table of Contents
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.001 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -161,9 +161,9 @@ Table of Contents
 |     inst                 |     0.002 |
 |       BSCANID.u_xsdbm_id |     0.002 |
 |   u_afe                  |     0.095 |
-|   u_ila_dac              |     0.005 |
-|     inst                 |     0.005 |
-|       ila_core_inst      |     0.005 |
+|   u_ila_dac              |     0.006 |
+|     inst                 |     0.006 |
+|       ila_core_inst      |     0.006 |
 +--------------------------+-----------+
 
 

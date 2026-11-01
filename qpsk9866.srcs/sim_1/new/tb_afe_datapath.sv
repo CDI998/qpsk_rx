@@ -79,10 +79,10 @@ module tb_afe_datapath;
                 if(dut.afe_tx_full) $fatal(1,"Write while full");
                 if(tx_sent>=65536) $fatal(1,"TX scoreboard overflow");
                 signed_sample=$signed(dut.afe_tx_sample[9:0]);
-                ideal=128.0*$sin(6.283185307179586*((tx_sent*25)%96)/96.0);
+                ideal=128.0*$sin(6.283185307179586*((tx_sent*10)%96)/96.0);
                 error=signed_sample-ideal;
                 if(error>0.51 || error< -0.51 || dut.afe_tx_sample[11:10]!=0)
-                    $fatal(1,"Invalid 5 MHz sine waveform");
+                    $fatal(1,"Invalid 2 MHz sine waveform");
                 expected_tx[tx_sent]=dut.afe_tx_sample;tx_sent=tx_sent+1;
             end
             if(dut.afe_init_done && dut.afe_tx_full) backpressure=backpressure+1;
@@ -145,15 +145,15 @@ module tb_afe_datapath;
     initial begin
         #200;rst_n=1;
         wait(dut.afe_init_done);#1;
-        if(frames!=12 || !tx_en || mode!==1 || pga!=6'd6 || regs[4]!=8'h19 || regs[11]!=8'h20 || regs[12]!=8'h01 || regs[5]!=0 || regs[13]!=8'h03)
+        if(frames!=12 || !tx_en || mode!==1 || pga!=6'd12 || regs[4]!=8'h19 || regs[11]!=8'h20 || regs[12]!=8'h01 || regs[5]!=0 || regs[13]!=8'h03)
             $fatal(1,"Configuration or aggregate startup failed");
         if(regs[12][7:6]!==2'b00 || model_dac_hz<40000000.0 || model_dac_hz>200000000.0 ||
            model_adc_hz<5000000.0 || model_adc_hz>80000000.0 ||
-           model_dac_hz/model_adc_hz!=4.0)
+           model_dac_hz/model_adc_hz!=4.0 || model_adc_hz!=19200000.0 || model_dac_hz!=76800000.0)
             $fatal(1,"Illegal full-duplex interpolation or clock frequencies");
         wait(tx_seen>=4096 && rx_seen>=4096);
         if(backpressure==0) $fatal(1,"TX backpressure not exercised");
-        $display("SINE_ADC_TEST_PASS: 5 MHz sine, 4096 physical DAC words, ADC order, 12-bit native FIFOs and backpressure");
+        $display("SINE_ADC_TEST_PASS: 2 MHz sine, 4096 physical DAC words, ADC order, 12-bit native FIFOs and backpressure");
         check_rx=0;
         force dut.afe_rx_rd_en=0;
         wait(dut.u_afe.rx_full);
